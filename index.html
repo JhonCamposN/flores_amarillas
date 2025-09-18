@@ -444,9 +444,12 @@
                 will-change: transform;
             }
             
-            .heart {
+            /* Forzar lluvia de corazones en tablets/móviles */
+            .hearts .heart {
                 animation: heartFloat 6s ease-in-out infinite !important;
                 will-change: transform;
+                display: block !important;
+                opacity: 1 !important;
             }
             
             .magical-btn {
@@ -461,7 +464,8 @@
             
             /* Animación de latido para modal de respuesta en tablets/móviles */
             .modal-content h2,
-            .modal-content div[style*="heartBeat"] {
+            .modal-content div[style*="heartBeat"],
+            div[style*="animation: heartBeat"] {
                 animation: heartBeat 1s ease infinite !important;
                 will-change: transform;
             }
@@ -596,9 +600,12 @@
                 will-change: transform;
             }
             
-            .heart {
+            /* Forzar lluvia de corazones en Xiaomi */
+            .hearts .heart {
                 animation: heartFloat 6s ease-in-out infinite !important;
                 will-change: transform;
+                display: block !important;
+                opacity: 1 !important;
             }
             
             .magical-btn {
@@ -613,7 +620,8 @@
             
             /* Animación de latido para modal de respuesta en Xiaomi */
             .modal-content h2,
-            .modal-content div[style*="heartBeat"] {
+            .modal-content div[style*="heartBeat"],
+            div[style*="animation: heartBeat"] {
                 animation: heartBeat 1s ease infinite !important;
                 will-change: transform;
             }
@@ -690,13 +698,12 @@
             }
             
             .heart {
-                animation-duration: 9s !important;
+                animation-duration: 7s !important;
                 will-change: transform;
-                opacity: 0.8;
             }
             
             .flower-decoration {
-                animation-duration: 6s !important;
+                animation-duration: 4s !important;
                 will-change: transform;
             }
             
@@ -711,9 +718,12 @@
                 will-change: transform;
             }
             
-            .heart {
+            /* Forzar lluvia de corazones en móviles pequeños */
+            .hearts .heart {
                 animation: heartFloat 8s ease-in-out infinite !important;
                 will-change: transform;
+                display: block !important;
+                opacity: 1 !important;
             }
             
             .magical-btn {
@@ -728,7 +738,8 @@
             
             /* Animación de latido para modal de respuesta en móviles pequeños */
             .modal-content h2,
-            .modal-content div[style*="heartBeat"] {
+            .modal-content div[style*="heartBeat"],
+            div[style*="animation: heartBeat"] {
                 animation: heartBeat 1s ease infinite !important;
                 will-change: transform;
             }
@@ -820,9 +831,12 @@
                 will-change: transform;
             }
             
-            .heart {
+            /* Forzar lluvia de corazones en landscape */
+            .hearts .heart {
                 animation: heartFloat 10s ease-in-out infinite !important;
                 will-change: transform;
+                display: block !important;
+                opacity: 1 !important;
             }
             
             .magical-btn {
@@ -837,7 +851,8 @@
             
             /* Animación de latido para modal de respuesta en landscape */
             .modal-content h2,
-            .modal-content div[style*="heartBeat"] {
+            .modal-content div[style*="heartBeat"],
+            div[style*="animation: heartBeat"] {
                 animation: heartBeat 1s ease infinite !important;
                 will-change: transform;
             }
