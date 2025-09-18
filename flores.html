@@ -14,6 +14,12 @@
             box-sizing: border-box;
         }
 
+        html {
+            height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
         :root {
             --color-bg: linear-gradient(135deg, #ff9a56 0%, #ffad56 25%, #ffd56b 50%, #fff176 75%, #ffeb3b 100%);
             --line-color: linear-gradient(to left top, #82ff86 20%, #144425, #104e1c);
@@ -25,11 +31,15 @@
         body {
             background-image: var(--color-bg);
             min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             overflow: hidden;
             cursor: pointer;
+            margin: 0;
+            padding: 0;
+            position: relative;
         }
 
         #text {
@@ -74,22 +84,146 @@
             }
         }
 
-        @media screen and (max-width: 768px) {
-            body {
-                align-items: center;
-            }
+        /* Responsive optimizado para móviles */
+        
+        /* Tablets y pantallas medianas */
+        @media screen and (max-width: 1024px) {
             #text {
-                font-size: 2.2rem;
-                padding: 15px 25px;
-                top: calc(45% - 250px);
+                font-size: 2.5rem;
+                padding: 18px 35px;
+                top: calc(50% - 300px);
             }
         }
 
-        @media screen and (max-width: 480px) {
+        /* Móviles grandes y tablets pequeñas */
+        @media screen and (max-width: 768px) {
+            body {
+                align-items: center;
+                overflow: hidden;
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+                position: fixed;
+                width: 100vw;
+                max-width: 100%;
+            }
+            
+            .flowers-garden {
+                height: 100vh;
+                max-height: 100vh;
+                width: 100vw;
+                max-width: 100%;
+                position: relative;
+            }
+            
             #text {
-                font-size: 1.8rem;
+                font-size: 2rem;
+                padding: 15px 25px;
+                top: 15%;
+                position: fixed;
+                z-index: 100;
+                max-width: 90vw;
+                word-wrap: break-word;
+                line-height: 1.2;
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares (393x851px) */
+        @media screen and (max-width: 430px) and (min-width: 360px) {
+            body {
+                padding: 0;
+                overflow: hidden;
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+                position: fixed;
+                width: 100vw;
+                max-width: 100%;
+            }
+            
+            .flowers-garden {
+                height: 100vh;
+                max-height: 100vh;
+                width: 100vw;
+                max-width: 100%;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            #text {
+                font-size: 1.6rem;
                 padding: 12px 20px;
-                top: calc(40% - 200px);
+                top: 8%;
+                max-width: 95vw;
+                border-radius: 20px;
+                backdrop-filter: blur(8px);
+                position: fixed;
+                z-index: 100;
+            }
+        }
+
+        /* Móviles pequeños */
+        @media screen and (max-width: 359px) {
+            body {
+                padding: 0;
+                overflow: hidden;
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+                position: fixed;
+                width: 100vw;
+                max-width: 100%;
+            }
+            
+            .flowers-garden {
+                height: 100vh;
+                max-height: 100vh;
+                width: 100vw;
+                max-width: 100%;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            #text {
+                font-size: 1.4rem;
+                padding: 10px 15px;
+                top: 5%;
+                max-width: 98vw;
+                border-radius: 15px;
+                position: fixed;
+                z-index: 100;
+            }
+        }
+
+        /* Orientación horizontal en móviles */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 0;
+                overflow: hidden;
+                height: 100vh;
+                min-height: 100vh;
+                max-height: 100vh;
+                position: fixed;
+                width: 100vw;
+                max-width: 100%;
+            }
+            
+            .flowers-garden {
+                height: 100vh;
+                max-height: 100vh;
+                width: 100vw;
+                max-width: 100%;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            #text {
+                font-size: 1.3rem;
+                padding: 8px 15px;
+                top: 5px;
+                position: fixed;
+                z-index: 100;
+                max-width: 90vw;
             }
         }
 
@@ -99,6 +233,9 @@
             position: relative;
             width: 100vw;
             height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: hidden;
         }
 
         .flower_wrapper {
@@ -488,21 +625,49 @@
         }
 
         /* Responsive para la flor izquierda */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             .left-flower-container {
-                left: 20px;
-                width: 225px;
-                height: 270px;
-                top: 20%;
+                left: 30px;
+                width: 250px;
+                height: 300px;
             }
         }
 
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 768px) {
+            .left-flower-container {
+                left: 15px;
+                width: 200px;
+                height: 250px;
+                bottom: 25%;
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares */
+        @media screen and (max-width: 430px) and (min-width: 360px) {
+            .left-flower-container {
+                left: 8px;
+                width: 160px;
+                height: 200px;
+                bottom: 20%;
+            }
+        }
+
+        @media screen and (max-width: 359px) {
+            .left-flower-container {
+                left: 5px;
+                width: 140px;
+                height: 175px;
+                bottom: 18%;
+            }
+        }
+
+        /* Orientación horizontal */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
             .left-flower-container {
                 left: 10px;
-                width: 180px;
-                height: 216px;
-                top: 15%;
+                width: 120px;
+                height: 150px;
+                bottom: 10%;
             }
         }
 
@@ -557,21 +722,49 @@
         }
 
         /* Responsive para la flor derecha */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             .right-flower-container {
-                right: 20px;
-                width: 225px;
-                height: 270px;
-                top: 20%;
+                right: 30px;
+                width: 250px;
+                height: 300px;
             }
         }
 
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 768px) {
+            .right-flower-container {
+                right: 15px;
+                width: 200px;
+                height: 250px;
+                bottom: 25%;
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares */
+        @media screen and (max-width: 430px) and (min-width: 360px) {
+            .right-flower-container {
+                right: 8px;
+                width: 160px;
+                height: 200px;
+                bottom: 20%;
+            }
+        }
+
+        @media screen and (max-width: 359px) {
+            .right-flower-container {
+                right: 5px;
+                width: 140px;
+                height: 175px;
+                bottom: 18%;
+            }
+        }
+
+        /* Orientación horizontal */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
             .right-flower-container {
                 right: 10px;
-                width: 180px;
-                height: 216px;
-                top: 15%;
+                width: 120px;
+                height: 150px;
+                bottom: 10%;
             }
         }
 
@@ -612,17 +805,53 @@
         }
 
         /* Responsive para las instrucciones */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             .flower-instruction {
-                font-size: 1.2rem;
-                bottom: -40px;
+                font-size: 1.4rem;
+                bottom: -45px;
             }
         }
 
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 768px) {
             .flower-instruction {
-                font-size: 1rem;
+                font-size: 1.1rem;
                 bottom: -35px;
+                padding: 5px 10px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 15px;
+                backdrop-filter: blur(5px);
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares */
+        @media screen and (max-width: 430px) and (min-width: 360px) {
+            .flower-instruction {
+                font-size: 0.9rem;
+                bottom: -30px;
+                padding: 4px 8px;
+                border-radius: 12px;
+                max-width: 90%;
+                word-wrap: break-word;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 359px) {
+            .flower-instruction {
+                font-size: 0.8rem;
+                bottom: -25px;
+                padding: 3px 6px;
+                border-radius: 10px;
+                max-width: 95%;
+            }
+        }
+
+        /* Orientación horizontal */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
+            .flower-instruction {
+                font-size: 0.7rem;
+                bottom: -20px;
+                padding: 2px 5px;
             }
         }
 
@@ -758,30 +987,41 @@
         }
 
         /* Responsive para controles de música */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             .music-controls {
-                top: 15px;
-                right: 15px;
-                gap: 10px;
+                top: 18px;
+                right: 18px;
             }
             
             .music-button {
-                width: 50px;
-                height: 50px;
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .music-controls {
+                top: 12px;
+                right: 12px;
+                transform: scale(0.9);
             }
             
-            .music-button svg {
-                width: 20px;
-                height: 20px;
+            .music-button {
+                width: 48px;
+                height: 48px;
             }
             
             .volume-control {
-                padding: 12px;
-                min-width: 100px;
+                margin-top: 6px;
             }
             
             .volume-slider {
-                width: 80px;
+                width: 75px;
+            }
+            
+            .volume-label,
+            .volume-percentage {
+                font-size: 0.75rem;
             }
         }
 
@@ -997,22 +1237,101 @@
         }
 
         /* Responsive para el modal */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             .love-modal-content {
-                padding: 30px 20px;
-                max-width: 90%;
+                padding: 35px 25px;
+                max-width: 85%;
             }
             
             .love-modal-title {
                 font-size: 2rem;
             }
-            
-            .love-modal-message {
-                font-size: 1.4rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .love-modal-content {
+                padding: 25px 20px;
+                max-width: 90%;
+                margin: 8% auto;
+                border-radius: 20px;
             }
             
-            .love-modal-emoji {
-                font-size: 2.5rem;
+            .love-modal-title {
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+            
+            .love-modal-message {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares */
+        @media screen and (max-width: 430px) and (min-width: 360px) {
+            .love-modal-content {
+                padding: 20px 15px;
+                max-width: 95%;
+                margin: 5% auto;
+                border-radius: 18px;
+            }
+            
+            .love-modal-title {
+                font-size: 1.4rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            .love-modal-message {
+                font-size: 0.95rem;
+                line-height: 1.4;
+                word-wrap: break-word;
+            }
+            
+            .love-modal-close {
+                font-size: 24px;
+                top: 10px;
+                right: 15px;
+            }
+        }
+
+        @media screen and (max-width: 359px) {
+            .love-modal-content {
+                padding: 18px 12px;
+                max-width: 98%;
+                margin: 3% auto;
+                border-radius: 15px;
+            }
+            
+            .love-modal-title {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .love-modal-message {
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
+        }
+
+        /* Orientación horizontal */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
+            .love-modal-content {
+                padding: 15px 20px;
+                max-width: 80%;
+                margin: 2% auto;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            .love-modal-title {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+            
+            .love-modal-message {
+                font-size: 0.8rem;
+                line-height: 1.2;
             }
         }
 
@@ -1269,7 +1588,7 @@
                 </g>
             </g>
         </svg>
-        <div class="flower-instruction">Deshoja la flor ♥</div>
+        <div class="flower-instruction">Deshoja la flor por completo mi amor ♥</div>
     </div>
 
     <!-- Flor SVG del lado derecho -->
@@ -1370,7 +1689,7 @@
                 </g>
             </g>
         </svg>
-        <div class="flower-instruction">Deshoja la flor ♥</div>
+        <div class="flower-instruction">Deshoja la flor por completo mi amor ♥</div>
     </div>
 
     <p id="text">💛 ¡Te Amo Mi Princesita! 💛</p>
@@ -1704,12 +2023,7 @@
                 petalElement.classList.remove('removing');
                 petalElement.classList.add('removed');
                 
-                // Verificar si todos los pétalos han sido eliminados
-                if (removedPetals.length === 8) {
-                    showAllPetalsRemovedMessage();
-                }
-                
-                // Verificar si ambas flores están completas
+                // Verificar si ambas flores están completas después de cada eliminación
                 checkAllPetalsCompleted();
             }, 800); // Duración de la animación petalFadeOut
         }
@@ -1717,15 +2031,13 @@
 
     // Función centralizada para verificar si ambas flores están completas
     function checkAllPetalsCompleted() {
+        console.log(`🔍 Verificando: Izquierda=${removedPetals.length}/8, Derecha=${removedPetalsRight.length}/8`);
+        
         if (removedPetals.length === 8 && removedPetalsRight.length === 8 && !allPetalsMessageShown) {
+            console.log("✅ ¡AMBAS FLORES COMPLETAS! Activando modal...");
             shouldShowAllPetalsMessage = true;
             allPetalsMessageShown = true; // Marcar como ya mostrado para evitar duplicados
         }
-    }
-
-    // Función para mostrar mensaje cuando todos los pétalos han sido eliminados
-    function showAllPetalsRemovedMessage() {
-        checkAllPetalsCompleted();
     }
 
     // Función para abrir el modal con mensaje de amor - lado derecho
@@ -1770,20 +2082,10 @@
                 petalElement.classList.remove('removing');
                 petalElement.classList.add('removed');
                 
-                // Verificar si todos los pétalos han sido eliminados
-                if (removedPetalsRight.length === 8) {
-                    showAllPetalsRemovedMessageRight();
-                }
-                
-                // Verificar si ambas flores están completas
+                // Verificar si ambas flores están completas después de cada eliminación
                 checkAllPetalsCompleted();
             }, 800); // Duración de la animación petalFadeOut
         }
-    }
-
-    // Función para mostrar mensaje cuando todos los pétalos del lado derecho han sido eliminados
-    function showAllPetalsRemovedMessageRight() {
-        checkAllPetalsCompleted();
     }
 
     // Variables para controlar el flujo final
@@ -1823,6 +2125,9 @@
         
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
+        
+        // Activar fuegos artificiales
+        createFireworks();
         
         console.log("🌻💕 ¡AMBAS FLORES COMPLETADAS! AMOR TOTAL REVELADO 💕🌻");
     }
@@ -1877,7 +2182,92 @@
             closeLoveModal();
         }
     });
-    
+
+    // Función para crear fuegos artificiales optimizada
+    function createFireworks() {
+        const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+        const emojis = ['✨', '🎆', '💫', '⭐', '🌟'];
+        
+        // Reducir explosiones para mejor rendimiento
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+                createFireworkExplosion(colors, emojis);
+            }, i * 300);
+        }
+    }
+
+    function createFireworkExplosion(colors, emojis) {
+        const container = document.body;
+        const centerX = Math.random() * window.innerWidth;
+        const centerY = Math.random() * (window.innerHeight * 0.5) + (window.innerHeight * 0.25);
+        
+        // Reducir partículas por explosión
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            const isEmoji = Math.random() > 0.6;
+            
+            if (isEmoji) {
+                particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.fontSize = (Math.random() * 15 + 12) + 'px';
+            } else {
+                particle.style.width = (Math.random() * 6 + 3) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+            }
+            
+            particle.style.position = 'fixed';
+            particle.style.left = centerX + 'px';
+            particle.style.top = centerY + 'px';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.willChange = 'transform, opacity';
+            
+            const angle = (i / 8) * 2 * Math.PI;
+            const velocity = Math.random() * 120 + 80;
+            const gravity = 0.4;
+            const friction = 0.97;
+            
+            let vx = Math.cos(angle) * velocity;
+            let vy = Math.sin(angle) * velocity;
+            let x = centerX;
+            let y = centerY;
+            let opacity = 1;
+            let frame = 0;
+            
+            container.appendChild(particle);
+            
+            function animate() {
+                frame++;
+                
+                // Actualizar solo cada 2 frames para mejor rendimiento
+                if (frame % 2 === 0) {
+                    vx *= friction;
+                    vy *= friction;
+                    vy += gravity;
+                    
+                    x += vx * 0.02;
+                    y += vy * 0.02;
+                    opacity -= 0.02;
+                    
+                    // Usar transform en lugar de left/top para mejor rendimiento
+                    particle.style.transform = `translate(${x - centerX}px, ${y - centerY}px)`;
+                    particle.style.opacity = opacity;
+                }
+                
+                if (opacity > 0 && frame < 150) {
+                    requestAnimationFrame(animate);
+                } else {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+    }
+
     console.log("🎵 Script de audio inicializado");
     console.log("📁 Ruta del archivo:", audio.src || "No definido");
     console.log("🌐 URL completa:", window.location.href);

@@ -486,44 +486,77 @@
         /* Específico para Xiaomi Redmi Note 11 y similares (393x851px) */
         @media (max-width: 430px) and (min-width: 360px) {
             .container {
-                padding: 12px 8px;
+                padding: 15px 10px;
                 min-height: 100vh;
-                justify-content: space-around;
+                justify-content: space-evenly;
             }
             
             .main-title {
-                font-size: 2.4rem;
-                margin-bottom: 10px;
+                font-size: 2.2rem;
+                margin-bottom: 12px;
                 line-height: 1.1;
+                word-wrap: break-word;
+                text-align: center;
             }
             
             .date {
-                font-size: 1.2rem;
-                margin-bottom: 18px;
+                font-size: 1.15rem;
+                margin-bottom: 20px;
             }
             
             .message-card {
-                padding: 22px 18px;
-                margin: 12px 5px;
-                max-width: calc(100vw - 16px);
-                border-radius: 18px;
+                padding: 25px 20px;
+                margin: 15px 8px;
+                max-width: calc(100vw - 20px);
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
             }
             
             .message-text {
-                font-size: 0.98rem;
-                line-height: 1.55;
+                font-size: 1rem;
+                line-height: 1.6;
+                word-wrap: break-word;
+                text-align: left;
+            }
+            
+            .btn-container {
+                margin-top: 25px;
+                width: 100%;
+                padding: 0 10px;
             }
             
             .magical-btn {
-                padding: 15px 22px;
-                font-size: 1.05rem;
-                width: calc(100vw - 30px);
-                max-width: 350px;
+                padding: 16px 25px;
+                font-size: 1.1rem;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+                display: block;
+                border-radius: 25px;
             }
             
-            
             .flower-decoration {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+            }
+            
+            .flower-decoration:nth-child(1) {
+                top: 5%;
+                left: 5%;
+            }
+            
+            .flower-decoration:nth-child(2) {
+                top: 8%;
+                right: 8%;
+            }
+            
+            .flower-decoration:nth-child(3) {
+                bottom: 12%;
+                left: 5%;
+            }
+            
+            .flower-decoration:nth-child(4) {
+                bottom: 15%;
+                right: 8%;
             }
         }
 
@@ -781,19 +814,153 @@
         }
 
         /* Responsive para el modal */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .modal-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 25px 20px;
+                width: 85%;
+                padding: 35px 25px;
             }
             
             .modal-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+                margin: 8% auto;
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.7rem;
+                line-height: 1.3;
             }
             
             .modal-question {
                 font-size: 1.1rem;
+                line-height: 1.4;
+            }
+            
+            .love-input {
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares */
+        @media (max-width: 430px) and (min-width: 360px) {
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 20px 15px;
+                border-radius: 18px;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            .modal-question {
+                font-size: 1rem;
+                line-height: 1.3;
+                margin-bottom: 12px;
+            }
+            
+            .modal-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            .love-input {
+                padding: 12px;
+                font-size: 0.95rem;
+                border-radius: 12px;
+            }
+            
+            .modal-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                border-radius: 20px;
+            }
+            
+            .close {
+                font-size: 24px;
+                top: 12px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 359px) {
+            .modal-content {
+                width: 98%;
+                margin: 3% auto;
+                padding: 18px 12px;
+                border-radius: 15px;
+            }
+            
+            .modal-title {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+            
+            .modal-question {
+                font-size: 0.95rem;
+                margin-bottom: 10px;
+            }
+            
+            .modal-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .love-input {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .modal-btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Orientación horizontal */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .modal-content {
+                width: 80%;
+                margin: 2% auto;
+                padding: 15px 20px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            .modal-title {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            
+            .modal-question {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+            
+            .modal-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .love-input {
+                padding: 8px;
+                font-size: 0.85rem;
+            }
+            
+            .modal-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
             }
         }
 
@@ -807,9 +974,239 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+
+        /* Carta de apertura */
+        .opening-card {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a56 0%, #ffad56 25%, #ffd56b 50%, #fff176 75%, #ffeb3b 100%);
+            z-index: 5000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .opening-card.hidden {
+            animation: cardFadeOut 1s ease forwards;
+        }
+
+        .card-envelope {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #fff9e6, #fffbf0);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(255, 215, 0, 0.4);
+            border: 3px solid #FFD700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        .card-envelope:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(255, 215, 0, 0.6);
+        }
+
+        .card-content {
+            padding: 40px 30px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6f00;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: titleShine 2s ease-in-out infinite;
+        }
+
+        .card-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #8B4513;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .card-instruction {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+            animation: instructionPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cardFadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.8); }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes titleShine {
+            0%, 100% { 
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% { 
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        @keyframes instructionPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive para la carta */
+        @media (max-width: 1024px) {
+            .card-envelope {
+                width: 85%;
+                max-width: 380px;
+                height: 280px;
+            }
+            
+            .card-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-envelope {
+                width: 90%;
+                max-width: 350px;
+                height: 250px;
+            }
+            
+            .card-content {
+                padding: 25px 20px;
+            }
+            
+            .card-title {
+                font-size: 1.9rem;
+                margin-bottom: 18px;
+            }
+            
+            .card-message {
+                font-size: 1.15rem;
+                line-height: 1.5;
+            }
+        }
+
+        /* Xiaomi Redmi Note 11 y similares (393x851px) */
+        @media (max-width: 430px) and (min-width: 360px) {
+            .card-envelope {
+                width: 95%;
+                max-width: 340px;
+                height: 230px;
+            }
+            
+            .card-content {
+                padding: 20px 15px;
+            }
+            
+            .card-title {
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+            
+            .card-message {
+                font-size: 1rem;
+                margin-bottom: 18px;
+                line-height: 1.4;
+            }
+            
+            .card-instruction {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 359px) {
+            .card-envelope {
+                width: 98%;
+                max-width: 310px;
+                height: 210px;
+            }
+            
+            .card-content {
+                padding: 18px 12px;
+            }
+            
+            .card-title {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
+            
+            .card-message {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+                line-height: 1.3;
+            }
+            
+            .card-instruction {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Orientación horizontal */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .card-envelope {
+                width: 70%;
+                max-width: 400px;
+                height: 180px;
+            }
+            
+            .card-content {
+                padding: 15px 20px;
+            }
+            
+            .card-title {
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+            }
+            
+            .card-message {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+                line-height: 1.2;
+            }
+            
+            .card-instruction {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Carta de apertura -->
+    <div id="openingCard" class="opening-card">
+        <div class="card-envelope" onclick="openCard()">
+            <div class="card-content">
+                <h2 class="card-title">💌 Para Mi Princesa 💌</h2>
+                <p class="card-message">
+                    Tienes una carta especial esperándote...<br>
+                    Llena de amor y sorpresas 💛
+                </p>
+                <p class="card-instruction">✨ Haz click para abrir ✨</p>
+            </div>
+        </div>
+    </div>
     <!-- Partículas de fondo -->
     <div class="particles">
         <div class="particle"></div>
@@ -879,6 +1276,17 @@
     </div>
 
     <script>
+        // Función para abrir la carta
+        function openCard() {
+            const openingCard = document.getElementById('openingCard');
+            openingCard.classList.add('hidden');
+            
+            // Remover la carta después de la animación
+            setTimeout(() => {
+                openingCard.style.display = 'none';
+            }, 1000);
+        }
+
         // Funciones del Modal
         function openLoveModal() {
             document.getElementById('loveModal').style.display = 'flex';
