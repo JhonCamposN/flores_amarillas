@@ -2126,9 +2126,6 @@
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
         
-        // Activar fuegos artificiales
-        createFireworks();
-        
         console.log("🌻💕 ¡AMBAS FLORES COMPLETADAS! AMOR TOTAL REVELADO 💕🌻");
     }
 
@@ -2182,92 +2179,7 @@
             closeLoveModal();
         }
     });
-
-    // Función para crear fuegos artificiales optimizada
-    function createFireworks() {
-        const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
-        const emojis = ['✨', '🎆', '💫', '⭐', '🌟'];
-        
-        // Reducir explosiones para mejor rendimiento
-        for (let i = 0; i < 8; i++) {
-            setTimeout(() => {
-                createFireworkExplosion(colors, emojis);
-            }, i * 300);
-        }
-    }
-
-    function createFireworkExplosion(colors, emojis) {
-        const container = document.body;
-        const centerX = Math.random() * window.innerWidth;
-        const centerY = Math.random() * (window.innerHeight * 0.5) + (window.innerHeight * 0.25);
-        
-        // Reducir partículas por explosión
-        for (let i = 0; i < 8; i++) {
-            const particle = document.createElement('div');
-            const isEmoji = Math.random() > 0.6;
-            
-            if (isEmoji) {
-                particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                particle.style.fontSize = (Math.random() * 15 + 12) + 'px';
-            } else {
-                particle.style.width = (Math.random() * 6 + 3) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.borderRadius = '50%';
-            }
-            
-            particle.style.position = 'fixed';
-            particle.style.left = centerX + 'px';
-            particle.style.top = centerY + 'px';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '9999';
-            particle.style.willChange = 'transform, opacity';
-            
-            const angle = (i / 8) * 2 * Math.PI;
-            const velocity = Math.random() * 120 + 80;
-            const gravity = 0.4;
-            const friction = 0.97;
-            
-            let vx = Math.cos(angle) * velocity;
-            let vy = Math.sin(angle) * velocity;
-            let x = centerX;
-            let y = centerY;
-            let opacity = 1;
-            let frame = 0;
-            
-            container.appendChild(particle);
-            
-            function animate() {
-                frame++;
-                
-                // Actualizar solo cada 2 frames para mejor rendimiento
-                if (frame % 2 === 0) {
-                    vx *= friction;
-                    vy *= friction;
-                    vy += gravity;
-                    
-                    x += vx * 0.02;
-                    y += vy * 0.02;
-                    opacity -= 0.02;
-                    
-                    // Usar transform en lugar de left/top para mejor rendimiento
-                    particle.style.transform = `translate(${x - centerX}px, ${y - centerY}px)`;
-                    particle.style.opacity = opacity;
-                }
-                
-                if (opacity > 0 && frame < 150) {
-                    requestAnimationFrame(animate);
-                } else {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }
-            }
-            
-            requestAnimationFrame(animate);
-        }
-    }
-
+    
     console.log("🎵 Script de audio inicializado");
     console.log("📁 Ruta del archivo:", audio.src || "No definido");
     console.log("🌐 URL completa:", window.location.href);
