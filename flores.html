@@ -1709,19 +1709,23 @@
                     showAllPetalsRemovedMessage();
                 }
                 
-                // Verificar si ambas flores están completamente deshojadas
-                checkBothFlowersCompleted();
+                // Verificar si ambas flores están completas
+                checkAllPetalsCompleted();
             }, 800); // Duración de la animación petalFadeOut
         }
     }
 
-    // Variable para controlar si se debe mostrar el mensaje de flor completa
-    let shouldShowLeftFlowerComplete = false;
+    // Función centralizada para verificar si ambas flores están completas
+    function checkAllPetalsCompleted() {
+        if (removedPetals.length === 8 && removedPetalsRight.length === 8 && !allPetalsMessageShown) {
+            shouldShowAllPetalsMessage = true;
+            allPetalsMessageShown = true; // Marcar como ya mostrado para evitar duplicados
+        }
+    }
 
     // Función para mostrar mensaje cuando todos los pétalos han sido eliminados
     function showAllPetalsRemovedMessage() {
-        shouldShowLeftFlowerComplete = true;
-        // No mostrar inmediatamente, esperar a que se cierre el modal actual
+        checkAllPetalsCompleted();
     }
 
     // Función para abrir el modal con mensaje de amor - lado derecho
@@ -1771,31 +1775,21 @@
                     showAllPetalsRemovedMessageRight();
                 }
                 
-                // Verificar si ambas flores están completamente deshojadas
-                checkBothFlowersCompleted();
+                // Verificar si ambas flores están completas
+                checkAllPetalsCompleted();
             }, 800); // Duración de la animación petalFadeOut
         }
     }
 
-    // Variable para controlar si se debe mostrar el mensaje de flor derecha completa
-    let shouldShowRightFlowerComplete = false;
-
     // Función para mostrar mensaje cuando todos los pétalos del lado derecho han sido eliminados
     function showAllPetalsRemovedMessageRight() {
-        shouldShowRightFlowerComplete = true;
-        // No mostrar inmediatamente, esperar a que se cierre el modal actual
+        checkAllPetalsCompleted();
     }
 
     // Variables para controlar el flujo final
     let shouldShowFinalLoader = false;
-
-    // Función para verificar si ambas flores están completamente deshojadas
-    function checkBothFlowersCompleted() {
-        if (removedPetals.length === 8 && removedPetalsRight.length === 8) {
-            shouldShowFinalLoader = true;
-            // No mostrar inmediatamente, esperar a que se cierren todos los modales
-        }
-    }
+    let shouldShowAllPetalsMessage = false;
+    let allPetalsMessageShown = false;
 
     // Función para mostrar el loader de "Cargando última carta"
     function showFinalLoader() {
@@ -1824,8 +1818,8 @@
         const messageElement = document.getElementById('loveMessage');
         const titleElement = document.querySelector('.love-modal-title');
         
-        titleElement.textContent = "🌻💕 AMOR COMPLETO 💕🌻";
-        messageElement.textContent = "¡Has descubierto todos los secretos de mi corazón! Ambas flores han revelado la profundidad de mi amor por ti. Eres mi universo completo, mi alma gemela, mi para siempre. ¡Te amo infinitamente, mi princesa hermosa! 💛✨🌟💫";
+        titleElement.textContent = "🌻💕 AMBAS FLORES COMPLETADAS 💕🌻";
+        messageElement.textContent = "¡INCREÍBLE! Has descubierto todos los secretos de mi corazón en ambas flores. Cada pétalo era una promesa de amor eterno. Ahora que has recorrido este jardín completo de sentimientos, quiero que sepas que eres mi universo entero, mi alma gemela perfecta, mi para siempre. ¡Te amo infinitamente, mi princesa hermosa! 💛✨🌟💫🌻";
         
         modal.classList.add('show');
         document.body.style.overflow = 'hidden';
@@ -1840,35 +1834,22 @@
         
         modal.classList.remove('show');
         
-        // Verificar qué modal debe mostrarse a continuación
-        if (shouldShowLeftFlowerComplete) {
-            // Mostrar inmediatamente el modal de flor izquierda completada
-            shouldShowLeftFlowerComplete = false;
+        // Verificar si debe mostrar el modal de "Terminaste los pétalos"
+        if (shouldShowAllPetalsMessage) {
+            shouldShowAllPetalsMessage = false;
             setTimeout(() => {
                 titleElement.textContent = "💕 Todos los Pétalos Recorridos 💕";
                 const messageElement = document.getElementById('loveMessage');
                 messageElement.textContent = "Has descubierto todos mis mensajes de amor... ¡Eres mi mundo completo, mi princesa hermosa! 🌻💛✨";
                 modal.classList.add('show');
                 document.body.style.overflow = 'hidden';
+                shouldShowFinalLoader = true; // Preparar para mostrar el loader después
             }, 100);
             return;
         }
         
-        if (shouldShowRightFlowerComplete) {
-            // Mostrar inmediatamente el modal de flor derecha completada
-            shouldShowRightFlowerComplete = false;
-            setTimeout(() => {
-                titleElement.textContent = "💕 Flor Derecha Completada 💕";
-                const messageElement = document.getElementById('loveMessage');
-                messageElement.textContent = "Has descubierto todos los secretos de mi corazón... ¡Juntos somos invencibles, mi amor eterno! 🌻💛✨";
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }, 100);
-            return;
-        }
-        
-        if (shouldShowFinalLoader) {
-            // Mostrar el loader final después de cerrar todos los modales
+        // Si debe mostrar el loader final después del modal semifinal
+        if (shouldShowFinalLoader && removedPetals.length === 8 && removedPetalsRight.length === 8) {
             shouldShowFinalLoader = false;
             setTimeout(() => {
                 showFinalLoader();
