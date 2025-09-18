@@ -506,6 +506,402 @@
             }
         }
 
+        /* Flor SVG del lado derecho */
+        .right-flower-container {
+            position: fixed;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 360px;
+            z-index: 60;
+            animation: floatFlowerRight 4s ease-in-out infinite;
+        }
+
+        .right-flower-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Efectos de hover para los pétalos del lado derecho */
+        .petal-group-right {
+            cursor: pointer;
+        }
+
+        .petal-group-right:hover .petal {
+            fill: #d19d03ff;
+            transform: scale(1.05);
+        }
+
+        /* Animación para pétalos que se eliminan - lado derecho */
+        .petal-group-right.removing {
+            animation: petalFadeOut 0.8s ease-out forwards;
+            pointer-events: none;
+        }
+
+        .petal-group-right.removed {
+            opacity: 0;
+            transform: scale(0);
+            pointer-events: none;
+        }
+
+        /* Animación de flotación para la flor derecha */
+        @keyframes floatFlowerRight {
+            0%, 100% {
+                transform: translateY(-50%) translateX(0px);
+            }
+            50% {
+                transform: translateY(-50%) translateX(-10px);
+            }
+        }
+
+        /* Responsive para la flor derecha */
+        @media screen and (max-width: 768px) {
+            .right-flower-container {
+                right: 20px;
+                width: 225px;
+                height: 270px;
+                top: 20%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .right-flower-container {
+                right: 10px;
+                width: 180px;
+                height: 216px;
+                top: 15%;
+            }
+        }
+
+        /* Texto instructivo debajo de las flores */
+        .flower-instruction {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #8B4513;
+            text-align: center;
+            text-shadow: 
+                2px 2px 4px rgba(0,0,0,0.3),
+                0 0 15px rgba(255, 215, 0, 0.5);
+            animation: instructionGlow 3s ease-in-out infinite;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        @keyframes instructionGlow {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1);
+                text-shadow: 
+                    2px 2px 4px rgba(0,0,0,0.3),
+                    0 0 15px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+                text-shadow: 
+                    2px 2px 4px rgba(0,0,0,0.3),
+                    0 0 25px rgba(255, 215, 0, 0.8),
+                    0 0 35px rgba(255, 165, 0, 0.4);
+            }
+        }
+
+        /* Responsive para las instrucciones */
+        @media screen and (max-width: 768px) {
+            .flower-instruction {
+                font-size: 1.2rem;
+                bottom: -40px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .flower-instruction {
+                font-size: 1rem;
+                bottom: -35px;
+            }
+        }
+
+        /* Controles de música */
+        .music-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-button {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 8px 20px rgba(255, 215, 0, 0.4),
+                0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .music-button:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 12px 30px rgba(255, 215, 0, 0.6),
+                0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-button:active {
+            transform: scale(0.95);
+        }
+
+        .music-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #8B4513;
+            transition: fill 0.3s ease;
+        }
+
+        .music-button.muted {
+            background: linear-gradient(135deg, #999, #666);
+        }
+
+        .music-button.muted svg {
+            fill: #fff;
+        }
+
+        /* Control de volumen */
+        .volume-control {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(255, 215, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 120px;
+        }
+
+        .volume-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            color: #8B4513;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 6px;
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .volume-slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .volume-percentage {
+            font-family: 'Dancing Script', cursive;
+            font-size: 0.9rem;
+            color: #8B4513;
+            font-weight: 600;
+        }
+
+        /* Responsive para controles de música */
+        @media screen and (max-width: 768px) {
+            .music-controls {
+                top: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            
+            .music-button {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .music-button svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .volume-control {
+                padding: 12px;
+                min-width: 100px;
+            }
+            
+            .volume-slider {
+                width: 80px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .music-controls {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .music-button {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .music-button svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .volume-control {
+                padding: 10px;
+                min-width: 90px;
+            }
+            
+            .volume-slider {
+                width: 70px;
+            }
+        }
+
+        /* Loader para "Cargando última carta" */
+        .love-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+            animation: loaderFadeIn 0.5s ease;
+        }
+
+        .love-loader.show {
+            display: flex;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: #FFD700;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .loader-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 215, 0, 0.3);
+            border-top: 4px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .loader-dots {
+            font-size: 1.5rem;
+            color: #FFD700;
+            animation: dotsPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loaderFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% { 
+                transform: scale(1.05);
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes dotsPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive para el loader */
+        @media screen and (max-width: 768px) {
+            .loader-title {
+                font-size: 2rem;
+            }
+            
+            .loader-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .loader-dots {
+                font-size: 1.2rem;
+            }
+        }
+
         /* Modal para mensajes de amor */
         .love-modal {
             position: fixed;
@@ -873,9 +1269,129 @@
                 </g>
             </g>
         </svg>
+        <div class="flower-instruction">Deshoja la flor ♥</div>
+    </div>
+
+    <!-- Flor SVG del lado derecho -->
+    <div class="right-flower-container">
+        <svg class="right-flower-svg" viewBox="0 0 244 280" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <path d="M130.987847,122 C133.659505,157.293805 135.315501,187.391727 135.955835,212.293767 C136.596169,237.195806 130.273506,263.431217 116.987847,291" id="path-stem-right"></path>
+                <filter x="-63.1%" y="-5.9%" width="226.2%" height="114.2%" filterUnits="objectBoundingBox" id="filter-stem-right">
+                    <feMorphology radius="5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+                    <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+                    <feMorphology radius="5" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+                    <feOffset dx="0" dy="2" in="shadowInner" result="shadowInner"></feOffset>
+                    <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.5 0 0 0 0 0.2 0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                </filter>
+                <path d="M223.120444,246.724259 C216.601694,240.205509 198.89935,211.936759 205.4181,205.418009 C211.93685,198.899259 240.2056,216.603165 246.72435,223.120353 C253.2431,229.639103 253.2431,240.205509 246.72435,246.724259 C240.2056,253.241446 229.638412,253.241446 223.120444,246.724259 Z" id="path-petal-right"></path>
+                <filter x="-18.9%" y="-18.9%" width="137.8%" height="137.8%" filterUnits="objectBoundingBox" id="filter-petal-right">
+                    <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0 0.2 0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                </filter>
+                <circle id="path-sm-circle-right" cx="27" cy="27" r="27"></circle>
+                <filter x="-16.7%" y="-16.7%" width="133.3%" height="133.3%" filterUnits="objectBoundingBox" id="filter-sm-circle-right">
+                    <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0 0.2 0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                </filter>
+                <circle id="path-lg-circle-right" cx="27" cy="27" r="18"></circle>
+                <filter x="-25.0%" y="-25.0%" width="150.0%" height="150.0%" filterUnits="objectBoundingBox" id="filter-lg-circle-right">
+                    <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.9 0 0 0 0 0.7 0 0 0 0 0.2 0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                </filter>
+                <path d="M0,0 C15,15 35,40 45,65 C50,90 45,120 25,135 C10,145 -10,140 -20,115 C-28,90 -20,55 -10,30 C-5,15 -2,5 0,0 Z" id="path-leaf-right"></path>
+                <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-leaf-right">
+                    <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0.2 0 0 0 0 0.5 0 0 0 0 0.2 0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                </filter>
+            </defs>
+            <g id="Page-1-right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Artboard-right" transform="translate(-78.000000, -78.000000)">
+                    <g id="Background-right" transform="translate(78.000000, 78.000000)">
+                        <g id="Path-stem-right" stroke-linecap="round" transform="translate(126.493923, 184.500000) scale(-1, 1) translate(-126.493923, -206.500000)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-stem-right)" xlink:href="#path-stem-right"></use>
+                            <g id="Leaf-right" transform="translate(175, 200) rotate(45) scale(0.4)">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-leaf-right)" xlink:href="#path-leaf-right"></use>
+                                <use fill="green" stroke="darkgreen" xlink:href="#path-leaf-right"></use>
+                            </g>
+                            <use stroke="#2E7D32" stroke-width="10" xlink:href="#path-stem-right"></use>
+                        </g>
+                    </g>
+                    <g id="Petal-right" transform="translate(0,-30)" fill="#FFD700" fill-rule="nonzero">
+                        <g id="petal-right-0" transform="rotate(0 200 200)" class="petal-group-right" onclick="openLoveModalRight(0)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-1" transform="rotate(90 200 200)" class="petal-group-right" onclick="openLoveModalRight(1)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-2" transform="rotate(180 200 200)" class="petal-group-right" onclick="openLoveModalRight(2)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-3" transform="rotate(270 200 200)" class="petal-group-right" onclick="openLoveModalRight(3)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-4" transform="rotate(405 200 200)" class="petal-group-right" onclick="openLoveModalRight(4)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-5" transform="rotate(495 200 200)" class="petal-group-right" onclick="openLoveModalRight(5)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-6" transform="rotate(585 200 200)" class="petal-group-right" onclick="openLoveModalRight(6)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                        <g id="petal-right-7" transform="rotate(675 200 200)" class="petal-group-right" onclick="openLoveModalRight(7)">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-petal-right)" xlink:href="#path-petal-right"></use>
+                            <use fill="#FFD700" xlink:href="#path-petal-right" class="petal"></use>
+                        </g>
+                    </g>
+                    <g id="Center-right" transform="translate(173.000000, 143.000000)">
+                        <g id="Oval-right">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-sm-circle-right)" xlink:href="#path-sm-circle-right"></use>
+                            <use fill="#8B4513" fill-rule="evenodd" xlink:href="#path-sm-circle-right"></use>
+                        </g>
+                        <g id="Oval-right">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-lg-circle-right)" xlink:href="#path-lg-circle-right"></use>
+                            <use fill="#513227" fill-rule="evenodd" xlink:href="#path-lg-circle-right"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <div class="flower-instruction">Deshoja la flor ♥</div>
     </div>
 
     <p id="text">💛 ¡Te Amo Mi Princesita! 💛</p>
+
+    <!-- Controles de música -->
+    <div class="music-controls">
+        <button id="musicToggle" class="music-button" onclick="toggleMusic()">
+            <svg id="playIcon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M8 5v14l11-7z"></path>
+            </svg>
+            <svg id="pauseIcon" viewBox="0 0 24 24" style="display: block;">
+                <path d="M6 19h4V5H6zm8-14v14h4V5z"></path>
+            </svg>
+        </button>
+        
+        <div class="volume-control">
+            <div class="volume-label">🔊 Volumen</div>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01" value="1">
+            <div id="volumePercentage" class="volume-percentage">100%</div>
+        </div>
+    </div>
 
     <!-- Modal de mensajes de amor -->
     <div id="loveModal" class="love-modal">
@@ -887,38 +1403,22 @@
         </div>
     </div>
 
+    <!-- Loader para "Cargando última carta" -->
+    <div id="loveLoader" class="love-loader">
+        <div class="loader-content">
+            <h2 class="loader-title">💌 Cargando última carta 💌</h2>
+            <div class="loader-spinner"></div>
+            <div class="loader-dots">• • •</div>
+        </div>
+    </div>
+
 </body>
 <script>
     // Variables globales
     let audio = document.getElementById("musica1");
     let musicStarted = false;
-    let fadeInterval;
-
-    // Función para fade-in suave del volumen
-    function fadeInVolume(duration = 6000) {
-        const targetVolume = 1.0;
-        const steps = 50; // Número de pasos para el fade
-        const stepTime = duration / steps;
-        const volumeStep = targetVolume / steps;
-        
-        let currentStep = 0;
-        audio.volume = 0; // Comenzar en silencio
-        
-        console.log("🎶 Iniciando fade-in del volumen...");
-        
-        fadeInterval = setInterval(() => {
-            currentStep++;
-            const newVolume = Math.min(volumeStep * currentStep, targetVolume);
-            audio.volume = newVolume;
-            
-            if (currentStep >= steps) {
-                clearInterval(fadeInterval);
-                audio.volume = targetVolume;
-                console.log("✅ Fade-in completado. Volumen:", audio.volume);
-            }
-        }, stepTime);
-    }
-
+    let isMuted = false;
+    let previousVolume = 1;
 
     // Función principal para iniciar la música
     function startMusic() {
@@ -941,7 +1441,7 @@
         }
         
         // Configurar audio
-        audio.volume = 0; // Comenzar en silencio para el fade-in
+        audio.volume = 1; // Volumen normal desde el inicio
         audio.loop = true;
         audio.muted = false;
         
@@ -952,8 +1452,6 @@
             playPromise.then(() => {
                 console.log("✅ Música iniciada exitosamente!");
                 musicStarted = true;
-                // Iniciar fade-in suave de 6 segundos
-                fadeInVolume(6000);
             }).catch(error => {
                 console.log("❌ Error al reproducir:", error.name, error.message);
                 
@@ -975,9 +1473,8 @@
                     setTimeout(() => {
                         if (!audio.paused) {
                             audio.muted = false;
+                            audio.volume = 1; // Volumen normal
                             console.log("🔊 Audio desmuteado automáticamente");
-                            // Iniciar fade-in suave de 6 segundos
-                            fadeInVolume(6000);
                         }
                     }, 1000);
                 }).catch(e => {
@@ -987,13 +1484,6 @@
         }
     }
 
-    // Función para limpiar el fade-in
-    function clearFadeIn() {
-        if (fadeInterval) {
-            clearInterval(fadeInterval);
-            fadeInterval = null;
-        }
-    }
 
     // Función para asegurar que la música esté sonando
     function ensureMusicPlaying() {
@@ -1054,8 +1544,95 @@
         console.log("📊 Progreso de carga del audio...");
     });
     
-    // Limpiar fade-in al cerrar la página
-    window.addEventListener('beforeunload', clearFadeIn);
+    // Event listener para cerrar la página
+    window.addEventListener('beforeunload', function() {
+        // Limpiar recursos si es necesario
+    });
+
+    // Funciones para controles de música
+    function toggleMusic() {
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const musicButton = document.getElementById('musicToggle');
+        
+        if (audio.paused) {
+            // Reproducir música
+            audio.play().then(() => {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                musicButton.classList.remove('muted');
+                isMuted = false;
+                console.log("🎵 Música reanudada");
+            }).catch(error => {
+                console.log("❌ Error al reproducir música:", error);
+            });
+        } else {
+            // Pausar música
+            audio.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            musicButton.classList.add('muted');
+            console.log("⏸️ Música pausada");
+        }
+    }
+
+    function updateVolume() {
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumePercentage = document.getElementById('volumePercentage');
+        const newVolume = parseFloat(volumeSlider.value);
+        
+        audio.volume = newVolume;
+        volumePercentage.textContent = Math.round(newVolume * 100) + '%';
+        
+        // Actualizar el estado de silenciado
+        if (newVolume === 0) {
+            isMuted = true;
+            document.getElementById('musicToggle').classList.add('muted');
+        } else {
+            isMuted = false;
+            document.getElementById('musicToggle').classList.remove('muted');
+            previousVolume = newVolume;
+        }
+        
+        console.log("🔊 Volumen ajustado a:", Math.round(newVolume * 100) + '%');
+    }
+
+    // Event listeners para controles de música
+    document.getElementById('volumeSlider').addEventListener('input', updateVolume);
+    
+    // Inicializar controles de música
+    function initMusicControls() {
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumePercentage = document.getElementById('volumePercentage');
+        
+        // Establecer volumen inicial
+        volumeSlider.value = audio.volume;
+        volumePercentage.textContent = Math.round(audio.volume * 100) + '%';
+        
+        // Actualizar estado del botón según el estado del audio
+        updateMusicButtonState();
+    }
+
+    function updateMusicButtonState() {
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const musicButton = document.getElementById('musicToggle');
+        
+        if (audio.paused) {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            musicButton.classList.add('muted');
+        } else {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+            musicButton.classList.remove('muted');
+        }
+    }
+
+    // Inicializar controles cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        initMusicControls();
+    });
 
     // Mensajes de amor para cada pétalo
     const loveMessages = [
@@ -1069,8 +1646,21 @@
         "Eres mi todo, mi universo completo, mi amor verdadero 💫"
     ];
 
-    // Array para rastrear pétalos eliminados
+    // Arrays para rastrear pétalos eliminados
     let removedPetals = [];
+    let removedPetalsRight = [];
+
+    // Mensajes de amor para la flor del lado derecho
+    const loveMessagesRight = [
+        "Eres mi refugio en las tormentas, mi paz en el caos 🌈",
+        "Tu amor es mi fuerza, mi inspiración diaria 💪",
+        "Contigo cada día es una nueva aventura llena de amor 🚀",
+        "Eres mi hogar, donde mi corazón encuentra descanso 🏠",
+        "Tu risa es la melodía más hermosa que conozco 🎵",
+        "Eres mi cómplice, mi mejor amiga, mi gran amor 👫",
+        "Contigo he aprendido que el amor verdadero existe 📖",
+        "Eres mi para siempre, mi eternidad en este mundo 🌍"
+    ];
 
     // Función para abrir el modal con mensaje de amor
     function openLoveModal(petalIndex) {
@@ -1118,23 +1708,129 @@
                 if (removedPetals.length === 8) {
                     showAllPetalsRemovedMessage();
                 }
+                
+                // Verificar si ambas flores están completamente deshojadas
+                checkBothFlowersCompleted();
             }, 800); // Duración de la animación petalFadeOut
         }
     }
 
+    // Variable para controlar si se debe mostrar el mensaje de flor completa
+    let shouldShowLeftFlowerComplete = false;
+
     // Función para mostrar mensaje cuando todos los pétalos han sido eliminados
     function showAllPetalsRemovedMessage() {
+        shouldShowLeftFlowerComplete = true;
+        // No mostrar inmediatamente, esperar a que se cierre el modal actual
+    }
+
+    // Función para abrir el modal con mensaje de amor - lado derecho
+    function openLoveModalRight(petalIndex) {
+        // Verificar si el pétalo ya fue eliminado
+        if (removedPetalsRight.includes(petalIndex)) {
+            return;
+        }
+
+        const modal = document.getElementById('loveModal');
+        const messageElement = document.getElementById('loveMessage');
+        const petalElement = document.getElementById(`petal-right-${petalIndex}`);
+        
+        // Establecer el mensaje correspondiente al pétalo del lado derecho
+        messageElement.textContent = loveMessagesRight[petalIndex];
+        
+        // Mostrar el modal
+        modal.classList.add('show');
+        
+        // Prevenir scroll del body
+        document.body.style.overflow = 'hidden';
+        
+        // Iniciar animación de eliminación del pétalo
+        removePetalRight(petalIndex);
+        
+        console.log(`Pétalo derecho ${petalIndex + 1} clickeado y eliminado: ${loveMessagesRight[petalIndex]}`);
+    }
+
+    // Función para eliminar un pétalo con animación - lado derecho
+    function removePetalRight(petalIndex) {
+        const petalElement = document.getElementById(`petal-right-${petalIndex}`);
+        
+        if (petalElement && !removedPetalsRight.includes(petalIndex)) {
+            // Agregar clase de animación de eliminación
+            petalElement.classList.add('removing');
+            
+            // Marcar como eliminado
+            removedPetalsRight.push(petalIndex);
+            
+            // Después de la animación, marcar como completamente eliminado
+            setTimeout(() => {
+                petalElement.classList.remove('removing');
+                petalElement.classList.add('removed');
+                
+                // Verificar si todos los pétalos han sido eliminados
+                if (removedPetalsRight.length === 8) {
+                    showAllPetalsRemovedMessageRight();
+                }
+                
+                // Verificar si ambas flores están completamente deshojadas
+                checkBothFlowersCompleted();
+            }, 800); // Duración de la animación petalFadeOut
+        }
+    }
+
+    // Variable para controlar si se debe mostrar el mensaje de flor derecha completa
+    let shouldShowRightFlowerComplete = false;
+
+    // Función para mostrar mensaje cuando todos los pétalos del lado derecho han sido eliminados
+    function showAllPetalsRemovedMessageRight() {
+        shouldShowRightFlowerComplete = true;
+        // No mostrar inmediatamente, esperar a que se cierre el modal actual
+    }
+
+    // Variables para controlar el flujo final
+    let shouldShowFinalLoader = false;
+
+    // Función para verificar si ambas flores están completamente deshojadas
+    function checkBothFlowersCompleted() {
+        if (removedPetals.length === 8 && removedPetalsRight.length === 8) {
+            shouldShowFinalLoader = true;
+            // No mostrar inmediatamente, esperar a que se cierren todos los modales
+        }
+    }
+
+    // Función para mostrar el loader de "Cargando última carta"
+    function showFinalLoader() {
+        const loader = document.getElementById('loveLoader');
+        loader.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        console.log("💌 Mostrando loader: Cargando última carta...");
+        
+        // Después de 3 segundos, ocultar loader y mostrar modal final
         setTimeout(() => {
-            const modal = document.getElementById('loveModal');
-            const messageElement = document.getElementById('loveMessage');
-            const titleElement = document.querySelector('.love-modal-title');
-            
-            titleElement.textContent = "💕 Todos los Pétalos Recorridos 💕";
-            messageElement.textContent = "Has descubierto todos mis mensajes de amor... ¡Eres mi mundo completo, mi princesa hermosa! 🌻💛✨";
-            
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }, 1000);
+            hideFinalLoader();
+            showFinalLoveModal();
+        }, 3000);
+    }
+
+    // Función para ocultar el loader
+    function hideFinalLoader() {
+        const loader = document.getElementById('loveLoader');
+        loader.classList.remove('show');
+    }
+
+    // Función para mostrar el modal final de amor completo
+    function showFinalLoveModal() {
+        const modal = document.getElementById('loveModal');
+        const messageElement = document.getElementById('loveMessage');
+        const titleElement = document.querySelector('.love-modal-title');
+        
+        titleElement.textContent = "🌻💕 AMOR COMPLETO 💕🌻";
+        messageElement.textContent = "¡Has descubierto todos los secretos de mi corazón! Ambas flores han revelado la profundidad de mi amor por ti. Eres mi universo completo, mi alma gemela, mi para siempre. ¡Te amo infinitamente, mi princesa hermosa! 💛✨🌟💫";
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        console.log("🌻💕 ¡AMBAS FLORES COMPLETADAS! AMOR TOTAL REVELADO 💕🌻");
     }
 
     // Función para cerrar el modal
@@ -1143,6 +1839,42 @@
         const titleElement = document.querySelector('.love-modal-title');
         
         modal.classList.remove('show');
+        
+        // Verificar qué modal debe mostrarse a continuación
+        if (shouldShowLeftFlowerComplete) {
+            // Mostrar inmediatamente el modal de flor izquierda completada
+            shouldShowLeftFlowerComplete = false;
+            setTimeout(() => {
+                titleElement.textContent = "💕 Todos los Pétalos Recorridos 💕";
+                const messageElement = document.getElementById('loveMessage');
+                messageElement.textContent = "Has descubierto todos mis mensajes de amor... ¡Eres mi mundo completo, mi princesa hermosa! 🌻💛✨";
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }, 100);
+            return;
+        }
+        
+        if (shouldShowRightFlowerComplete) {
+            // Mostrar inmediatamente el modal de flor derecha completada
+            shouldShowRightFlowerComplete = false;
+            setTimeout(() => {
+                titleElement.textContent = "💕 Flor Derecha Completada 💕";
+                const messageElement = document.getElementById('loveMessage');
+                messageElement.textContent = "Has descubierto todos los secretos de mi corazón... ¡Juntos somos invencibles, mi amor eterno! 🌻💛✨";
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }, 100);
+            return;
+        }
+        
+        if (shouldShowFinalLoader) {
+            // Mostrar el loader final después de cerrar todos los modales
+            shouldShowFinalLoader = false;
+            setTimeout(() => {
+                showFinalLoader();
+            }, 500);
+            return;
+        }
         
         // Restaurar título original si fue cambiado
         titleElement.textContent = "Mensaje de Amor";
