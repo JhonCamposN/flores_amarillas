@@ -470,6 +470,35 @@
                 will-change: transform;
             }
             
+            /* Efecto de escritura optimizado para móviles */
+            .typewriter {
+                font-size: 1rem !important;
+                line-height: 1.4 !important;
+                border-right-width: 2px !important;
+            }
+            
+            /* Modal de respuesta de amor optimizado para móviles */
+            .love-response-modal {
+                padding: 30px 20px !important;
+                font-size: 0.9rem !important;
+                animation: heartBeat 1s ease infinite !important;
+                will-change: transform !important;
+            }
+            
+            .love-response-modal h2 {
+                font-size: 2rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .love-response-modal p {
+                font-size: 1rem !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .love-response-modal #countdown {
+                font-size: 1.2rem !important;
+            }
+            
             .main-title {
                 font-size: 2.8rem;
                 margin-bottom: 12px;
@@ -626,6 +655,34 @@
                 will-change: transform;
             }
             
+            /* Efecto de escritura optimizado para Xiaomi */
+            .typewriter {
+                font-size: 0.95rem !important;
+                line-height: 1.3 !important;
+                border-right-width: 2px !important;
+            }
+            
+            /* Modal de respuesta de amor optimizado para Xiaomi */
+            .love-response-modal {
+                padding: 25px 15px !important;
+                animation: heartBeat 1s ease infinite !important;
+                will-change: transform !important;
+            }
+            
+            .love-response-modal h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .love-response-modal p {
+                font-size: 0.95rem !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .love-response-modal #countdown {
+                font-size: 1.1rem !important;
+            }
+            
             .message-card {
                 padding: 25px 20px;
                 margin: 15px 8px;
@@ -744,6 +801,34 @@
                 will-change: transform;
             }
             
+            /* Efecto de escritura optimizado para móviles pequeños */
+            .typewriter {
+                font-size: 0.9rem !important;
+                line-height: 1.2 !important;
+                border-right-width: 1px !important;
+            }
+            
+            /* Modal de respuesta de amor optimizado para móviles pequeños */
+            .love-response-modal {
+                padding: 20px 12px !important;
+                animation: heartBeat 1s ease infinite !important;
+                will-change: transform !important;
+            }
+            
+            .love-response-modal h2 {
+                font-size: 1.6rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .love-response-modal p {
+                font-size: 0.9rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .love-response-modal #countdown {
+                font-size: 1rem !important;
+            }
+            
             .main-title {
                 font-size: 2rem;
                 margin-bottom: 8px;
@@ -855,6 +940,35 @@
             div[style*="animation: heartBeat"] {
                 animation: heartBeat 1s ease infinite !important;
                 will-change: transform;
+            }
+            
+            /* Efecto de escritura optimizado para landscape */
+            .typewriter {
+                font-size: 0.85rem !important;
+                line-height: 1.1 !important;
+                border-right-width: 1px !important;
+            }
+            
+            /* Modal de respuesta de amor optimizado para landscape */
+            .love-response-modal {
+                padding: 15px 20px !important;
+                animation: heartBeat 1s ease infinite !important;
+                will-change: transform !important;
+                max-height: 85vh !important;
+            }
+            
+            .love-response-modal h2 {
+                font-size: 1.4rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .love-response-modal p {
+                font-size: 0.85rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .love-response-modal #countdown {
+                font-size: 0.9rem !important;
             }
             
             .message-card {
@@ -1210,6 +1324,24 @@
             50% { transform: scale(1.05); }
         }
 
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #FFD700; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #FFD700;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+
         /* Carta de apertura */
         .opening-card {
             position: fixed;
@@ -1524,8 +1656,35 @@
 
         // Funciones del Modal
         function openLoveModal() {
-            document.getElementById('loveModal').style.display = 'flex';
-            document.getElementById('loveInput').focus();
+            const modal = document.getElementById('loveModal');
+            const modalQuestion = document.querySelector('.modal-question');
+            
+            modal.style.display = 'flex';
+            
+            // Agregar efecto de escritura al texto
+            modalQuestion.innerHTML = '';
+            modalQuestion.classList.add('typewriter');
+            
+            const text = 'Te amo demasiado mi princesita hermosa';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    modalQuestion.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 80);
+                } else {
+                    // Remover el cursor parpadeante después de completar
+                    setTimeout(() => {
+                        modalQuestion.classList.remove('typewriter');
+                        modalQuestion.style.borderRight = 'none';
+                        document.getElementById('loveInput').focus();
+                    }, 1000);
+                }
+            }
+            
+            // Iniciar el efecto de escritura después de un pequeño delay
+            setTimeout(typeWriter, 500);
         }
 
         function closeLoveModal() {
@@ -1578,14 +1737,19 @@
             `;
             
             const messageDiv = document.createElement('div');
+            messageDiv.className = 'love-response-modal';
             messageDiv.style.cssText = `
                 background: linear-gradient(135deg, #ff6b6b, #ff8a80);
                 padding: 40px;
                 border-radius: 25px;
                 text-align: center;
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-                animation: heartBeat 1s ease infinite;
+                animation: heartBeat 1s ease infinite !important;
                 border: 3px solid #fff;
+                max-width: 90vw;
+                max-height: 90vh;
+                overflow-y: auto;
+                will-change: transform;
             `;
             
             messageDiv.innerHTML = `
