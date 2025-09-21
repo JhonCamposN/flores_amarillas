@@ -499,6 +499,13 @@
                 font-size: 1.2rem !important;
             }
             
+            /* Efecto de escritura del mensaje principal optimizado para móviles */
+            .message-typewriter {
+                border-right-width: 2px !important;
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+            
             .main-title {
                 font-size: 2.8rem;
                 margin-bottom: 12px;
@@ -683,6 +690,13 @@
                 font-size: 1.1rem !important;
             }
             
+            /* Efecto de escritura del mensaje principal optimizado para Xiaomi */
+            .message-typewriter {
+                border-right-width: 2px !important;
+                font-size: 0.95rem !important;
+                line-height: 1.5 !important;
+            }
+            
             .message-card {
                 padding: 25px 20px;
                 margin: 15px 8px;
@@ -829,6 +843,13 @@
                 font-size: 1rem !important;
             }
             
+            /* Efecto de escritura del mensaje principal optimizado para móviles pequeños */
+            .message-typewriter {
+                border-right-width: 1px !important;
+                font-size: 0.9rem !important;
+                line-height: 1.4 !important;
+            }
+            
             .main-title {
                 font-size: 2rem;
                 margin-bottom: 8px;
@@ -969,6 +990,13 @@
             
             .love-response-modal #countdown {
                 font-size: 0.9rem !important;
+            }
+            
+            /* Efecto de escritura del mensaje principal optimizado para landscape */
+            .message-typewriter {
+                border-right-width: 1px !important;
+                font-size: 0.85rem !important;
+                line-height: 1.3 !important;
             }
             
             .message-card {
@@ -1342,6 +1370,22 @@
             animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
         }
 
+        .message-typewriter {
+            overflow: hidden;
+            border-right: 2px solid #FFD700;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        .message-typewriter.typing {
+            border-right: 2px solid #FFD700;
+        }
+
+        .message-typewriter.finished {
+            border-right: none;
+        }
+
         /* Carta de apertura */
         .opening-card {
             position: fixed;
@@ -1609,16 +1653,8 @@
         <div class="date">✨ 21 de Septiembre ✨</div>
         
         <div class="message-card">
-            <p class="message-text">
-                Mi princesita hermosa ❤️<br><br>
-                Te envío estas <span class="highlight">flores amarillas</span> porque eres la luz que 
-                <span class="highlight">ilumina cada momento</span> de mi vida. Aun que no sean reales, pero igual cada pétalo representa todo el 
-                <span class="highlight">amor infinito</span> que siento por ti.<br><br>
-                Eres mi <span class="highlight">sol</span>, mi <span class="highlight">inspiración</span>, 
-                mi <span class="highlight">razón de sonreír</span> cada día. No hay palabras suficientes para 
-                expresar lo <span class="highlight">profundamente enamorado</span> que estoy de ti.<br><br>
-                Gracias por existir y por <span class="highlight">llenar mi mundo de color</span>. 
-                Eres y serás siempre <span class="highlight">mi persona favorita</span> ✨💛
+            <p id="loveMessage" class="message-text">
+                <!-- El texto se escribirá aquí con JavaScript -->
             </p>
         </div>
 
@@ -1651,7 +1687,72 @@
             // Remover la carta después de la animación
             setTimeout(() => {
                 openingCard.style.display = 'none';
+                // Iniciar el efecto de escritura del mensaje principal
+                startMessageTypewriter();
             }, 1000);
+        }
+
+        // Función para el efecto de escritura del mensaje principal
+        function startMessageTypewriter() {
+            const messageElement = document.getElementById('loveMessage');
+            const fullText = `Mi princesita hermosa ❤️
+
+Te envío estas flores amarillas porque eres la luz que ilumina cada momento de mi vida. Aun que no sean reales, pero igual cada pétalo representa todo el amor infinito que siento por ti.
+
+Eres mi sol, mi inspiración, mi razón de sonreír cada día. No hay palabras suficientes para expresar lo profundamente enamorado que estoy de ti.
+
+Gracias por existir y por llenar mi mundo de color. Eres y serás siempre mi persona favorita ✨💛`;
+
+            messageElement.innerHTML = '';
+            messageElement.classList.add('message-typewriter', 'typing');
+            
+            let i = 0;
+            
+            function typeMessage() {
+                if (i < fullText.length) {
+                    const char = fullText.charAt(i);
+                    if (char === '\n') {
+                        messageElement.innerHTML += '<br>';
+                    } else {
+                        messageElement.innerHTML += char;
+                    }
+                    i++;
+                    setTimeout(typeMessage, 50); // Velocidad de escritura: 50ms por carácter
+                } else {
+                    // Terminar el efecto de escritura
+                    setTimeout(() => {
+                        messageElement.classList.remove('typing');
+                        messageElement.classList.add('finished');
+                        
+                        // Agregar los highlights después de completar
+                        setTimeout(() => {
+                            addHighlights();
+                        }, 500);
+                    }, 1000);
+                }
+            }
+            
+            // Iniciar después de un pequeño delay
+            setTimeout(typeMessage, 800);
+        }
+
+        // Función para agregar los highlights al texto
+        function addHighlights() {
+            const messageElement = document.getElementById('loveMessage');
+            let html = messageElement.innerHTML;
+            
+            // Agregar highlights a palabras específicas
+            html = html.replace(/flores amarillas/g, '<span class="highlight">flores amarillas</span>');
+            html = html.replace(/ilumina cada momento/g, '<span class="highlight">ilumina cada momento</span>');
+            html = html.replace(/amor infinito/g, '<span class="highlight">amor infinito</span>');
+            html = html.replace(/sol/g, '<span class="highlight">sol</span>');
+            html = html.replace(/inspiración/g, '<span class="highlight">inspiración</span>');
+            html = html.replace(/razón de sonreír/g, '<span class="highlight">razón de sonreír</span>');
+            html = html.replace(/profundamente enamorado/g, '<span class="highlight">profundamente enamorado</span>');
+            html = html.replace(/llenar mi mundo de color/g, '<span class="highlight">llenar mi mundo de color</span>');
+            html = html.replace(/mi persona favorita/g, '<span class="highlight">mi persona favorita</span>');
+            
+            messageElement.innerHTML = html;
         }
 
         // Funciones del Modal
